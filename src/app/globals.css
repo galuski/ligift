@@ -1,6 +1,10 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4efec;
+  --foreground: #005b47;
+  --accent: #005b47;
+  --skucolor: #005b47;
+  --border: #bcb7b4;
+  --blacktext: #1A1A1A;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,8 +20,9 @@ html {
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  /* הוסר max-width: 100vw */
+  /* הוסר overflow-x: hidden */
+  width: 100%; /* פותר את בעיית הרוחב בצורה טבעית ללא חסימות */
 }
 
 body {

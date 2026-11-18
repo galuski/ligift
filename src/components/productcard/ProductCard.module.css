@@ -1,0 +1,148 @@
+/* עוטף הכרטיסייה - הפיכה לגריד RTL */
+.productCard {
+  display: grid;
+  grid-template-columns: 4fr 3fr 3fr; /* ברירת מחדל: טקסט (40%), טבלה (30%), תמונה (30%) */
+  gap: 20px;
+  direction: rtl; 
+  align-items: start; 
+  border-bottom: 4px dotted var(--border);
+  background-color: var(--background);
+  padding: 20px;
+  cursor: pointer;
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: baseline; /* יישור הטקסט לפי קו תחתון משותף */
+  gap: 12px; /* המרווח בין הכותרת ליחידת המידה */
+  flex-wrap: wrap; /* מאפשר שבירת שורה במסכים קטנים אם הכותרת ארוכה */
+}
+
+/* 1. עמודת הטקסט */
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%; 
+}
+
+.productName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--foreground);
+}
+
+.productDescription {
+  font-size: 1.1rem; /* מוקטן מעט לטובת רספונסיביות */
+  color: var(--blacktext);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.unit {
+  font-size: 1rem;
+  color: var(--blacktext);
+}
+
+.priceContainer {
+  margin-top: auto; /* תמיד ידחוף את המחיר לתחתית אזור הטקסט */
+  padding-top: 12px; 
+}
+
+.productPrice {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--foreground);
+}
+
+/* 2. עמודת הטבלה */
+.tableColumn {
+  display: flex;
+  width: 100%;
+  min-height: 10px; 
+}
+
+/* 3. עמודת התמונה */
+.imageColumn {
+  position: relative; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* תגית המק"ט */
+.skuBadge {
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  background-color: var(--skucolor);
+  color: var(--background);
+  padding: 4px 10px;
+  font-weight: 400;
+  font-size: 0.75rem;
+  z-index: 10; 
+}
+
+/* מעטפת התמונה */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 250px; 
+  aspect-ratio: 1 / 1; /* שינוי לריבוע 1:1, מקטין משמעותית את החלל הריק */
+  overflow: hidden;
+}
+
+.optimizedImage {
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.productCard:hover .optimizedImage {
+  transform: scale(1.05);
+}
+
+/* טאבלט - מסתירים את העמודה הריקה כדי למנוע צפיפות */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .productCard {
+    /* 2 עמודות: טקסט (60%) ותמונה (40%) */
+    grid-template-columns: 1.5fr 1fr;
+  }
+  
+  .tableColumn {
+    display: none;
+  }
+}
+
+/* מובייל - שבירת הגריד לעמודה אחת וסידור מחדש */
+@media (max-width: 767px) {
+  .productCard {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  /* הופכים את הסדר במובייל כדי שהתמונה תהיה ראשונה */
+  .imageColumn {
+    order: 1;
+    margin-bottom: 10px;
+  }
+  
+  .textColumn {
+    order: 2;
+  }
+  
+  .tableColumn {
+    display: none;
+  }
+  
+  .skuBadge {
+    top: 0;
+    left: 0;
+  }
+
+  .imageWrapper {
+    max-width: 180px; /* תמונה מעט קטנה יותר במובייל */
+  }
+}

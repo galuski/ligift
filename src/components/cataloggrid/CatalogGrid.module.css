@@ -1,0 +1,27 @@
+.layoutContainer {
+  display: flex;
+  gap: 40px;
+  position: relative;
+  /* מוודא שהעמודות נמתחות לאורך כל התוכן כדי שה-Sticky יעבוד */
+  align-items: stretch; 
+}
+
+.mainContent {
+  flex-grow: 1;
+  min-width: 0; /* מונע גלישת תוכן אופקית (Overflow) */
+}
+
+.noResults {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--blacktext);
+  padding: 60px 20px;
+  background-color: var(--background);
+}
+
+/* התאמת מרווחים למובייל וטאבלט */
+@media (max-width: 900px) {
+  .layoutContainer {
+    gap: 20px;
+  }
+}

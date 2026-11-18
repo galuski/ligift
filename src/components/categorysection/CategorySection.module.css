@@ -1,0 +1,56 @@
+.categorySection {
+  margin-bottom: 16px;
+}
+
+.categoryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  margin-bottom: 20px;
+  background-color: var(--accent);
+}
+
+.categoryTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--background);
+}
+
+.itemCount {
+  color: var(--background);
+  font-size: 1rem;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* טאבלט */
+@media (min-width: 768px) {
+  .productGrid {
+    gap: 30px;
+  }
+}
+
+/* מסכי מחשב - מציג כמה עמודות לפי הגודל הפנוי (כמו שהיה אצלך, אבל מבוקר יותר) */
+@media (min-width: 1024px) {
+  .productGrid {
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 40px 30px;
+  }
+}
+
+/* התאמות קטנות למובייל */
+@media (max-width: 480px) {
+  .categoryHeader {
+    padding: 12px 16px;
+  }
+  
+  .categoryTitle {
+    font-size: 1.5rem;
+  }
+}
